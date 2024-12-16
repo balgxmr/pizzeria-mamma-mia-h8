@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar total={25000} />
       <Home />
       <Footer />
     </>

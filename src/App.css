@@ -37,3 +37,8 @@
 .header-description {
   font-size: 1.2rem;
 }
+
+/* Footer.css */
+.footer {
+  background-color: darkslategray;
+}
