@@ -16,7 +16,7 @@ const NavbarComponent = (props) => {
         <Container fluid>
           {/* Título de la Navbar */}
           <Navbar.Brand href="#" className="text-white">
-            Pizzería Zacaggni
+            Pizzería Mamma Mía
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

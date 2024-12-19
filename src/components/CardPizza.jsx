@@ -16,7 +16,7 @@ const CardPizza = (props) => {
         <ListGroup className="list-group-flush">
           <ListGroup.Item className="p-3">
             <Card.Title className="text-center fw-normal">Ingredientes</Card.Title>
-            <Card.Text>🍕 {props.ingredientes.join(", ")}</Card.Text>
+            <Card.Text className="text-center">🍕 {props.ingredientes.join(", ")}</Card.Text>
           </ListGroup.Item>
           <ListGroup.Item>
             <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
