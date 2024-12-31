@@ -42,3 +42,8 @@
 .footer {
   background-color: darkslategray;
 }
+
+/* Formulario CSS */
+.formulario {
+  margin: 5rem 30%;
+}
