@@ -12,11 +12,16 @@ const CardPizza = (props) => {
         <Card.Img variant="top" src={props.img} />
         <Card.Body>
           <Card.Title className="fs-3">{props.nombre}</Card.Title>
+          <Card.Text className="fw-normal">{props.desc}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item className="p-3">
             <Card.Title className="text-center fw-normal">Ingredientes</Card.Title>
-            <Card.Text className="text-center">🍕 {props.ingredientes.join(", ")}</Card.Text>
+            <ul className="text-center list-unstyled">
+              {props.ingredientes.map((ingrediente, index) => (
+                <li key={index}>🍕 {ingrediente}</li>
+              ))}
+            </ul>
           </ListGroup.Item>
           <ListGroup.Item>
             <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
