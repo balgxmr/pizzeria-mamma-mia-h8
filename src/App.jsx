@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import Cart from "./components/Cart";
+import Pizza from "./components/Pizza";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       {/* <Home /> */}
       {/* <RegisterPage />
       <LoginPage /> */}
-      <Cart />
+      {/* <Cart /> */}
+      <Pizza />
       <Footer />
     </>
   );

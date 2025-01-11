@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import { pizzas } from "../data/pizzas";
+// import { pizzas } from "../data/pizzas";
 
 const Home = () => {
+  const [pizza, setPizza] = useState([]);
+
+  useEffect(() => {
+    async function obtenerDatos() {
+      const res = await fetch("http://localhost:5000/api/pizzas");
+      const data = await res.json();
+
+      console.log(data);
+
+      setPizza(data);
+    }
+
+    obtenerDatos();
+  }, []);
+
   return (
     <>
       <Header />
@@ -19,9 +35,8 @@ const Home = () => {
           <CardPizza nombre="Pepperoni" precio={6950} ingredientes={["mozzarella", "pepperoni", "orégano"]} img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3" />
         </Col>
       </Row> */}
-
       <Row xs={1} md={3} className="g-4 ms-5 me-5 mb-5 mt-3">
-        {pizzas.map((pizza) => {
+        {pizza.map((pizza) => {
           return (
             <Col key={pizza.id}>
               <CardPizza nombre={pizza.name} desc={pizza.desc} precio={pizza.price} ingredientes={pizza.ingredients} img={pizza.img}></CardPizza>
