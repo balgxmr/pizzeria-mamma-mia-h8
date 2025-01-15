@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { Container } from "react-bootstrap";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -19,6 +20,13 @@ const LoginPage = () => {
 
   return (
     <>
+      <Container className="text-center">
+        <h1 className="pt-5">
+          <span className="fw-bold">Pizzería Mamma Mía!</span>
+        </h1>
+        <hr className="mt-5" />
+      </Container>
+
       <section className="d-flex flex-column align-items-start formulario">
         <h1 className="mb-4">Login</h1>
         <form action="" className="w-100">
