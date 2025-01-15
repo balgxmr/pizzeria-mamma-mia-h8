@@ -3,6 +3,32 @@
   padding: 0;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #343a40; /* Color oscuro */
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
 /* Header.css */
 .header-container {
   position: relative;

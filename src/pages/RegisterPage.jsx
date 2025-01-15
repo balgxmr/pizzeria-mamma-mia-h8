@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { Container } from "react-bootstrap";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +23,13 @@ const RegisterPage = () => {
 
   return (
     <>
+      <Container className="text-center">
+        <h1 className="pt-5">
+          <span className="fw-bold">Pizzería Mamma Mía | Registro</span>
+        </h1>
+        <hr className="mt-5" />
+      </Container>
+
       <section className="d-flex flex-column align-items-start formulario">
         <h1 className="mb-4">Registrarme</h1>
         <form action="" className="w-100">

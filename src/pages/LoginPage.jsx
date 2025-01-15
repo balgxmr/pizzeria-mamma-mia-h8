@@ -22,7 +22,7 @@ const LoginPage = () => {
     <>
       <Container className="text-center">
         <h1 className="pt-5">
-          <span className="fw-bold">Pizzería Mamma Mía!</span>
+          <span className="fw-bold">Pizzería Mamma Mía | Inicio de Sesión</span>
         </h1>
         <hr className="mt-5" />
       </Container>
