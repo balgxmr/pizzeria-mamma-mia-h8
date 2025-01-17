@@ -1,15 +1,20 @@
-import React from "react";
+import { formatoSeparador } from "../utils/utils";
+import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
-import { formatoSeparador } from "../utils/utils";
-import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-const NavbarComponent = (props) => {
+const NavbarComponent = () => {
+  const { cart } = useContext(CartContext); // Accede al contexto del carrito
+
+  // Calcula el total del carrito
+  const calculaTotal = () => cart.reduce((total, pizza) => total + pizza.price * pizza.count, 0);
+
+  // Simula el estado del token (puedes reemplazar esto con tu lógica real de autenticación)
   const token = false;
-
-  const totalFormateado = formatoSeparador(props.total);
 
   return (
     <div>
@@ -52,7 +57,7 @@ const NavbarComponent = (props) => {
             {/* Botón del carrito con el total */}
             <Form className="d-flex">
               <Link to="/cart" type="button" className="btn btn-outline-secondary text-white">
-                🛒 Total: {totalFormateado || 0}
+                🛒 Total: ${formatoSeparador(calculaTotal()) || 0}
               </Link>
             </Form>
           </Navbar.Collapse>

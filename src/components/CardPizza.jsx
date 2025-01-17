@@ -2,37 +2,49 @@ import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { formatoSeparador } from "../utils/utils";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
 const CardPizza = (props) => {
+  const { addToCart } = useContext(CartContext);
   const precioFormateado = formatoSeparador(props.precio);
 
+  const handleAddToCart = () => {
+    addToCart({
+      id: props.id,
+      name: props.nombre,
+      price: props.precio,
+      img: props.img,
+    });
+  };
+
   return (
-    <>
-      <Card>
-        <Card.Img variant="top" src={props.img} />
-        <Card.Body>
-          <Card.Title className="fs-3">{props.nombre}</Card.Title>
-          <Card.Text className="fw-normal">{props.desc}</Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroup.Item className="p-3">
-            <Card.Title className="text-center fw-normal">Ingredientes</Card.Title>
-            <ul className="text-center list-unstyled">
-              {props.ingredientes.map((ingrediente, index) => (
-                <li key={index}>🍕 {ingrediente}</li>
-              ))}
-            </ul>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
-            <section className="d-flex justify-content-around align-items-center mb-3">
-              <Button variant="outline-secondary">Ver más 👀</Button>
-              <Button variant="dark">Añadir al 🛒</Button>
-            </section>
-          </ListGroup.Item>
-        </ListGroup>
-      </Card>
-    </>
+    <Card>
+      <Card.Img variant="top" src={props.img} />
+      <Card.Body>
+        <Card.Title className="fs-3">{props.nombre}</Card.Title>
+        <Card.Text className="fw-normal">{props.desc}</Card.Text>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item className="p-3">
+          <Card.Title className="text-center fw-normal">Ingredientes</Card.Title>
+          <ul className="text-center list-unstyled">
+            {props.ingredientes.map((ingrediente, index) => (
+              <li key={index}>🍕 {ingrediente}</li>
+            ))}
+          </ul>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
+          <section className="d-flex justify-content-around align-items-center mb-3">
+            <Button variant="outline-secondary">Ver más 👀</Button>
+            <Button variant="dark" onClick={handleAddToCart}>
+              Añadir al 🛒
+            </Button>
+          </section>
+        </ListGroup.Item>
+      </ListGroup>
+    </Card>
   );
 };
 

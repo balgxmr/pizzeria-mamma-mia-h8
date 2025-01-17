@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
+import { PizzaContext } from "../context/PizzaContext";
 // import { pizzas } from "../data/pizzas";
 
 const Home = () => {
-  const [pizza, setPizza] = useState([]);
+  const { pizza } = useContext(PizzaContext);
 
-  useEffect(() => {
-    async function obtenerDatos() {
-      const res = await fetch("http://localhost:5000/api/pizzas");
-      const data = await res.json();
+  // useEffect(() => {
+  //   async function obtenerDatos() {
+  //     const res = await fetch("http://localhost:5000/api/pizzas");
+  //     const data = await res.json();
 
-      console.log(data);
+  //     console.log(data);
 
-      setPizza(data);
-    }
+  //     setPizza(data);
+  //   }
 
-    obtenerDatos();
-  }, []);
+  //   obtenerDatos();
+  // }, []);
 
   return (
     <>
