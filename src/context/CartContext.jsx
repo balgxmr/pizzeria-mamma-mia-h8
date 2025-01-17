@@ -4,13 +4,21 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [nextId, setNextId] = useState(1); // Contador para generar IDs únicos
+  const [nextId, setNextId] = useState(1);
 
   const addToCart = (pizza) => {
     setCart((prevCart) => {
-      const newPizza = { ...pizza, cartItemId: nextId }; // Añade un ID único
-      setNextId(nextId + 1); // Seinncrementa el contador para el siguiente ID único
-      return [...prevCart, { ...newPizza, count: 1 }];
+      // Buscar si la pizza ya está en el carrito
+      const existingPizza = prevCart.find((item) => item.id === pizza.id && item.name === pizza.name);
+      if (existingPizza) {
+        // Si ya existe, incrementar su cantidad
+        return prevCart.map((item) => (item.id === pizza.id && item.name === pizza.name ? { ...item, count: item.count + 1 } : item));
+      } else {
+        // Si no existe, añadir una nueva con un ID único
+        const newPizza = { ...pizza, cartItemId: nextId, count: 1 };
+        setNextId(nextId + 1);
+        return [...prevCart, newPizza];
+      }
     });
   };
 
@@ -19,9 +27,7 @@ const CartProvider = ({ children }) => {
   };
 
   const decrementarCantidad = (cartItemId) => {
-    setCart(
-      (prevCart) => prevCart.map((item) => (item.cartItemId === cartItemId ? { ...item, count: item.count - 1 } : item)).filter((item) => item.count > 0) // Elimina pizzas con count <= 0
-    );
+    setCart((prevCart) => prevCart.map((item) => (item.cartItemId === cartItemId ? { ...item, count: item.count - 1 } : item)).filter((item) => item.count > 0));
   };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
