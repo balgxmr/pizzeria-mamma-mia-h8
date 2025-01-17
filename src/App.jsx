@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <CartProvider>
-        <Navbar total={25000} />
+        <Navbar />
         <PizzaProvider>
           <main>
             <Routes>
