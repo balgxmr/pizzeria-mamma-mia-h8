@@ -4,10 +4,12 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { formatoSeparador } from "../utils/utils";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CardPizza = ({ pizza }) => {
   const { addToCart } = useContext(CartContext);
   const precioFormateado = formatoSeparador(pizza.price);
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     addToCart({
@@ -18,8 +20,9 @@ const CardPizza = ({ pizza }) => {
     });
   };
 
-  const verDetalle = (id) => {
-    alert(id);
+  const verDetalle = () => {
+    // alert(id);
+    navigate(`/pizza/${pizza.id}`);
   };
 
   return (
@@ -41,7 +44,7 @@ const CardPizza = ({ pizza }) => {
         <ListGroup.Item>
           <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
           <section className="d-flex justify-content-around align-items-center mb-3">
-            <Button onClick={() => verDetalle(pizza.id)} variant="outline-secondary">
+            <Button onClick={() => verDetalle()} variant="outline-secondary">
               Ver más 👀
             </Button>
             <Button variant="dark" onClick={handleAddToCart}>

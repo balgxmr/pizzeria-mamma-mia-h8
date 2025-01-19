@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { formatoSeparador } from "../utils/utils";
+import { NavLink, useParams } from "react-router-dom";
 
 const Pizza = () => {
+  const { id } = useParams(); //Se captura el ID de la URL
   const [pizza, setPizza] = useState({
     name: "",
     ingredients: [],
@@ -14,7 +16,7 @@ const Pizza = () => {
   useEffect(() => {
     async function obtenerDatos() {
       try {
-        const res = await fetch("http://localhost:5000/api/pizzas/p001");
+        const res = await fetch(`http://localhost:5000/api/pizzas/${id}`);
         const data = await res.json();
         setPizza(data);
       } catch (error) {
@@ -23,7 +25,7 @@ const Pizza = () => {
     }
 
     obtenerDatos();
-  }, []);
+  }, [id]); // Sevuelve a ejecutar si cambia el ID
 
   return (
     <Container className="my-5">
@@ -42,6 +44,12 @@ const Pizza = () => {
             Ordenar
           </Button>
         </Col>
+      </Row>
+
+      <Row>
+        <NavLink to="/" className="btn btn-dark btn-lg mt-4">
+          Volver al Home
+        </NavLink>
       </Row>
     </Container>
   );
