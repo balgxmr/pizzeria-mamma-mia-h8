@@ -1,5 +1,5 @@
 import { formatoSeparador } from "../utils/utils";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -27,38 +27,38 @@ const NavbarComponent = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0 gap-3" style={{ maxHeight: "100px" }} navbarScroll>
-              <Link to="/" className="btn btn-outline-secondary text-white">
+              <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/" type="button">
                 🍕 Home
-              </Link>
+              </NavLink>
 
               {token ? (
                 <>
                   {/* Si el usuario está logueado */}
-                  <Link to="/profile" type="button" className="btn btn-outline-secondary text-white">
+                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/profile" type="button">
                     🔓 Profile
-                  </Link>
-                  <Link type="button" className="btn btn-outline-secondary text-white">
+                  </NavLink>
+                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/logout" type="button">
                     🔒 Logout
-                  </Link>
+                  </NavLink>
                 </>
               ) : (
                 <>
                   {/* Si el usuario NO está logueado */}
-                  <Link to="/login" type="button" className="btn btn-outline-secondary text-white">
+                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/login" type="button">
                     🔐 Login
-                  </Link>
-                  <Link to="/register" type="button" className="btn btn-outline-secondary text-white">
+                  </NavLink>
+                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/register" type="button">
                     🔐 Register
-                  </Link>
+                  </NavLink>
                 </>
               )}
             </Nav>
 
             {/* Botón del carrito con el total */}
             <Form className="d-flex">
-              <Link to="/cart" type="button" className="btn btn-outline-secondary text-white">
+              <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/cart" type="button">
                 🛒 Total: ${formatoSeparador(calculaTotal()) || 0}
-              </Link>
+              </NavLink>
             </Form>
           </Navbar.Collapse>
         </Container>

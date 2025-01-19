@@ -29,6 +29,10 @@ footer {
   color: white;
 }
 
+.estaActivo {
+  color: darkgreen;
+}
+
 /* Header.css */
 .header-container {
   position: relative;
