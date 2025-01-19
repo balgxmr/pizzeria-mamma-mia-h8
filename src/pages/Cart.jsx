@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import "../App.css";
 import { formatoSeparador } from "../utils/utils";
 import { CartContext } from "../context/CartContext";
+import UserContext from "../context/UserContext";
 
 const Cart = () => {
   const { cart, incrementarCantidad, decrementarCantidad, total } = useContext(CartContext);
+  const { user } = useContext(UserContext);
 
   return (
     <div className="m-5">
@@ -33,7 +35,11 @@ const Cart = () => {
         <p>No hay pizzas en el carrito.</p>
       )}
       <h3 className="mt-4">Total: ${formatoSeparador(total)}</h3>
-      <button className="btn btn-dark mt-3">Pagar</button>
+      <button className="btn btn-dark mt-3" disabled={!user}>
+        {" "}
+        {/* Deshabilitamos el botón si el token es falso */}
+        Pagar
+      </button>
     </div>
   );
 };

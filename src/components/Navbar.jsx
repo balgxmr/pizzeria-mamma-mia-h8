@@ -6,11 +6,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import { CartContext } from "../context/CartContext";
+import UserContext from "../context/UserContext";
 
 const NavbarComponent = () => {
   const { cart } = useContext(CartContext);
+  const { user, logout } = useContext(UserContext);
+
   const calculaTotal = () => cart.reduce((total, pizza) => total + pizza.price * pizza.count, 0);
-  const token = false;
 
   return (
     <div>
@@ -27,13 +29,13 @@ const NavbarComponent = () => {
                 🍕 Home
               </NavLink>
 
-              {token ? (
+              {user ? (
                 <>
                   {/* Si el usuario está logueado */}
                   <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/profile" type="button">
                     🔓 Profile
                   </NavLink>
-                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/logout" type="button">
+                  <NavLink className={({ isActive }) => `${isActive ? "text-grey" : ""} btn btn-outline-secondary`} to="/" type="button" onClick={logout}>
                     🔒 Logout
                   </NavLink>
                 </>

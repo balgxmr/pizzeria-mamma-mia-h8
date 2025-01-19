@@ -12,8 +12,12 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import CartProvider from "./context/CartContext";
 import PizzaProvider from "./context/PizzaContext";
+import { useContext } from "react";
+import UserContext from "./context/UserContext";
 
 function App() {
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <CartProvider>
@@ -21,13 +25,13 @@ function App() {
         <PizzaProvider>
           <main>
             <Routes>
-              <Route path="/" element={<Home></Home>}></Route>
-              <Route path="/login" element={<LoginPage></LoginPage>}></Route>
-              <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
-              <Route path="/cart" element={<Cart></Cart>}></Route>
-              <Route path="/pizza/:id" element={<Pizza></Pizza>}></Route>
-              <Route path="/profile" element={<Profile></Profile>}></Route>
-              <Route path="*" element={<NotFound></NotFound>}></Route>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/login" element={user ? <Home /> : <LoginPage />}></Route>
+              <Route path="/register" element={user ? <Home /> : <RegisterPage />}></Route>
+              <Route path="/cart" element={<Cart />}></Route>
+              <Route path="/pizza/:id" element={<Pizza />}></Route>
+              <Route path="/profile" element={user ? <Profile /> : <LoginPage />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </main>
         </PizzaProvider>
