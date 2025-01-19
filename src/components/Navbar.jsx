@@ -8,12 +8,8 @@ import Form from "react-bootstrap/Form";
 import { CartContext } from "../context/CartContext";
 
 const NavbarComponent = () => {
-  const { cart } = useContext(CartContext); // Accede al contexto del carrito
-
-  // Calcula el total del carrito
+  const { cart } = useContext(CartContext);
   const calculaTotal = () => cart.reduce((total, pizza) => total + pizza.price * pizza.count, 0);
-
-  // Simula el estado del token (puedes reemplazar esto con tu lógica real de autenticación)
   const token = false;
 
   return (

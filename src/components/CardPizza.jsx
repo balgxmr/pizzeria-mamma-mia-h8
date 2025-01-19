@@ -5,31 +5,35 @@ import { formatoSeparador } from "../utils/utils";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
-const CardPizza = (props) => {
+const CardPizza = ({ pizza }) => {
   const { addToCart } = useContext(CartContext);
-  const precioFormateado = formatoSeparador(props.precio);
+  const precioFormateado = formatoSeparador(pizza.price);
 
   const handleAddToCart = () => {
     addToCart({
-      id: props.id,
-      name: props.nombre,
-      price: props.precio,
-      img: props.img,
+      id: pizza.id,
+      name: pizza.name,
+      price: pizza.price,
+      img: pizza.img,
     });
+  };
+
+  const verDetalle = (id) => {
+    alert(id);
   };
 
   return (
     <Card>
-      <Card.Img variant="top" src={props.img} />
+      <Card.Img variant="top" src={pizza.img} />
       <Card.Body>
-        <Card.Title className="fs-3">{props.nombre}</Card.Title>
-        <Card.Text className="fw-normal">{props.desc}</Card.Text>
+        <Card.Title className="fs-3">{pizza.name}</Card.Title>
+        <Card.Text className="fw-normal">{pizza.desc}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item className="p-3">
           <Card.Title className="text-center fw-normal">Ingredientes</Card.Title>
           <ul className="text-center list-unstyled">
-            {props.ingredientes.map((ingrediente, index) => (
+            {pizza.ingredients.map((ingrediente, index) => (
               <li key={index}>🍕 {ingrediente}</li>
             ))}
           </ul>
@@ -37,7 +41,9 @@ const CardPizza = (props) => {
         <ListGroup.Item>
           <Card.Title className="text-center fw-bold fs-3 mb-4 mt-2">Precio: ${precioFormateado}</Card.Title>
           <section className="d-flex justify-content-around align-items-center mb-3">
-            <Button variant="outline-secondary">Ver más 👀</Button>
+            <Button onClick={() => verDetalle(pizza.id)} variant="outline-secondary">
+              Ver más 👀
+            </Button>
             <Button variant="dark" onClick={handleAddToCart}>
               Añadir al 🛒
             </Button>
