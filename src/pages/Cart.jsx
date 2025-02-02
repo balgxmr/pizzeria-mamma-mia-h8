@@ -62,6 +62,7 @@ const Cart = () => {
       <button className="btn btn-dark mt-3" onClick={handleCheckout} disabled={!user}>
         Pagar
       </button>
+      {!user && <p className="text-danger mt-2">Inicia sesión para pagar</p>}
     </div>
   );
 };
