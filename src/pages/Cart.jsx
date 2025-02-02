@@ -59,7 +59,7 @@ const Cart = () => {
         <p>No hay pizzas en el carrito.</p>
       )}
       <h3 className="mt-4">Total: ${formatoSeparador(total)}</h3>
-      <button className="btn btn-dark mt-3" onClick={handleCheckout} disabled={!user}>
+      <button className="btn btn-dark mt-3" onClick={handleCheckout} disabled={!user || total === 0}>
         Pagar
       </button>
       {!user && <p className="text-danger mt-2">Inicia sesión para pagar</p>}
