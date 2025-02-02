@@ -15,53 +15,45 @@ const NavbarComponent = () => {
   const calculaTotal = () => cart.reduce((total, pizza) => total + pizza.price * pizza.count, 0);
 
   return (
-    <div>
-      <Navbar expand="lg" className="bg-dark">
-        <Container fluid>
-          {/* Título de la Navbar */}
-          <Navbar.Brand href="#" className="text-white">
-            Pizzería Mamma Mía
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav className="me-auto my-2 my-lg-0 gap-3" style={{ maxHeight: "100px" }} navbarScroll>
-              <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/" type="button">
-                🍕 Home
-              </NavLink>
+    <Navbar expand="lg" className="bg-dark">
+      <Container fluid>
+        <Navbar.Brand className="text-white">Pizzería Mamma Mía</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav className="me-auto my-2 my-lg-0 gap-3" navbarScroll>
+            <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/">
+              🍕 Home
+            </NavLink>
 
-              {user ? (
-                <>
-                  {/* Si el usuario está logueado */}
-                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/profile" type="button">
-                    🔓 Profile
-                  </NavLink>
-                  <NavLink className={({ isActive }) => `${isActive ? "text-grey" : ""} btn btn-outline-secondary`} to="/" type="button" onClick={logout}>
-                    🔒 Logout
-                  </NavLink>
-                </>
-              ) : (
-                <>
-                  {/* Si el usuario NO está logueado */}
-                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/login" type="button">
-                    🔐 Login
-                  </NavLink>
-                  <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/register" type="button">
-                    🔐 Register
-                  </NavLink>
-                </>
-              )}
-            </Nav>
+            {user ? (
+              <>
+                <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/profile">
+                  🔓 Profile
+                </NavLink>
+                <button className="btn btn-outline-secondary text-grey" onClick={logout}>
+                  🔒 Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/login">
+                  🔐 Login
+                </NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/register">
+                  🔐 Register
+                </NavLink>
+              </>
+            )}
+          </Nav>
 
-            {/* Botón del carrito con el total */}
-            <Form className="d-flex">
-              <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/cart" type="button">
-                🛒 Total: ${formatoSeparador(calculaTotal()) || 0}
-              </NavLink>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+          <Form className="d-flex">
+            <NavLink className={({ isActive }) => `${isActive ? "text-white" : "text-grey"} btn btn-outline-secondary`} to="/cart">
+              🛒 Total: ${formatoSeparador(calculaTotal()) || 0}
+            </NavLink>
+          </Form>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
